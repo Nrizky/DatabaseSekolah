@@ -17,15 +17,17 @@ import com.example.databasesekolah.ui.main.MainContact;
 
 import java.util.List;
 
-public class Adapter extends  RecyclerView.Adapter<Adapter.ViewHolder>{
+public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder> {
     Context context;
     List<DataSekolah> list;
     MainContact.hapus view;
+
     public Adapter(Context context, List<DataSekolah> list, MainContact.hapus view) {
         this.view = view;
         this.context = context;
         this.list = list;
     }
+
     @NonNull
     @Override
     public Adapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
@@ -46,7 +48,7 @@ public class Adapter extends  RecyclerView.Adapter<Adapter.ViewHolder>{
             @Override
             public void onClick(View v) {
                 view.deleteData(data);
-               // return true;
+                // return true;
             }
         });
         viewHolder.btn_2.setOnClickListener(new View.OnClickListener() {
@@ -73,6 +75,7 @@ public class Adapter extends  RecyclerView.Adapter<Adapter.ViewHolder>{
     public class ViewHolder extends RecyclerView.ViewHolder {
         TextView textView_1, textView_2, textView_3, textView_4;
         Button btn_1, btn_2;
+
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             textView_1 = itemView.findViewById(R.id.tv_item_jml_siswa);

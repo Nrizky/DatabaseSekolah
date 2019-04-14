@@ -2,8 +2,8 @@ package com.example.databasesekolah.ui.main;
 
 import android.content.Intent;
 import android.os.AsyncTask;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -14,10 +14,11 @@ import com.example.databasesekolah.Entity.DataSekolah;
 import com.example.databasesekolah.R;
 
 public class MainActivity extends AppCompatActivity {
+    AppDatabase appDatabase;
     private EditText editText_1, editText_2, editText_3, editText_4;
     private Button btn_1, btn_2;
     private String data_1, data_2, data_3, data_4;
-    AppDatabase appDatabase;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -45,7 +46,8 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
-    public void input(){
+
+    public void input() {
         data_1 = editText_1.getText().toString();
         data_2 = editText_2.getText().toString();
         data_3 = editText_3.getText().toString();
@@ -57,6 +59,7 @@ public class MainActivity extends AppCompatActivity {
         dataSekolah.setAlamat(data_4);
         new InsertData(appDatabase, dataSekolah).execute();
     }
+
     class InsertData extends AsyncTask<Void, Void, Long> {
         private AppDatabase database;
         private DataSekolah dataSekolah;

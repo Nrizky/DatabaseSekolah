@@ -10,6 +10,7 @@ import com.example.databasesekolah.Entity.DataSekolah;
 public class Presenter implements MainContact.datapresenter {
     MainContact.view view;
     MainContact.hapus viewH;
+
     public Presenter(MainContact.view view) {
         this.view = view;
     }
@@ -18,9 +19,26 @@ public class Presenter implements MainContact.datapresenter {
         this.viewH = viewH;
     }
 
+    @Override
+    public void editData(String jml_siswa, String jml_guru, String nama_sekolah, String alamat, int id, AppDatabase database) {
+        final DataSekolah dataSekolah = new DataSekolah();
+        dataSekolah.setJml_siswa(jml_siswa);
+        dataSekolah.setJml_guru(jml_guru);
+        dataSekolah.setNama_sekolah(nama_sekolah);
+        dataSekolah.setAlamat(alamat);
+        dataSekolah.setId(id);
+        new EditData(database, dataSekolah).execute();
+    }
+
+    @Override
+    public void deleteData(DataSekolah dataSekolah, AppDatabase database) {
+        new DeleteData(database, dataSekolah).execute();
+    }
+
     class EditData extends AsyncTask<Void, Void, Integer> {
         private AppDatabase database;
         private DataSekolah dataSekolah;
+
         public EditData(AppDatabase database, DataSekolah dataSekolah) {
             this.database = database;
             this.dataSekolah = dataSekolah;
@@ -39,20 +57,11 @@ public class Presenter implements MainContact.datapresenter {
         }
     }
 
-    @Override
-    public void editData(String jml_siswa, String jml_guru, String nama_sekolah, String alamat, int id, AppDatabase database) {
-        final DataSekolah dataSekolah = new DataSekolah();
-        dataSekolah.setJml_siswa(jml_siswa);
-        dataSekolah.setJml_guru(jml_guru);
-        dataSekolah.setNama_sekolah(nama_sekolah);
-        dataSekolah.setAlamat(alamat);
-        dataSekolah.setId(id);
-        new EditData(database, dataSekolah).execute();
-    }
-    class DeleteData extends AsyncTask<Void, Void, Void>{
+    class DeleteData extends AsyncTask<Void, Void, Void> {
+        Context context;
         private AppDatabase database;
         private DataSekolah dataSekolah;
-        Context context;
+
         public DeleteData(AppDatabase database, DataSekolah dataSekolah) {
             this.database = database;
             this.dataSekolah = dataSekolah;
@@ -61,7 +70,7 @@ public class Presenter implements MainContact.datapresenter {
         @Override
         protected Void doInBackground(Void... voids) {
             database.dao().deleteData(dataSekolah);
-            return  null;
+            return null;
         }
 
         @Override
@@ -70,9 +79,5 @@ public class Presenter implements MainContact.datapresenter {
             viewH.sukses();
         }
 
-    }
-    @Override
-    public void deleteData(DataSekolah dataSekolah, AppDatabase database) {
-        new DeleteData(database,dataSekolah).execute();
     }
 }

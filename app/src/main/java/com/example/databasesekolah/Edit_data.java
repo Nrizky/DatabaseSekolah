@@ -8,7 +8,6 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-
 import com.example.databasesekolah.Entity.AppDatabase;
 import com.example.databasesekolah.Entity.DataSekolah;
 import com.example.databasesekolah.ui.main.Main2Activity;
@@ -25,6 +24,7 @@ public class Edit_data extends AppCompatActivity implements MainContact.view {
     private String data_1, data_2, data_3, data_4;
     private boolean edit = false;
     private int id;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -80,16 +80,16 @@ public class Edit_data extends AppCompatActivity implements MainContact.view {
         jml_guru = editText2.getText().toString();
         nama_sekolah = editText3.getText().toString();
         Alamat = editText4.getText().toString();
-        if(v ==  btn1){
-            if(jml_siswa.equals("") || jml_guru.equals("") || nama_sekolah.equals("") || Alamat.equals("")) {
+        if (v == btn1) {
+            if (jml_siswa.equals("") || jml_guru.equals("") || nama_sekolah.equals("") || Alamat.equals("")) {
                 Toast.makeText(this, "Harap isi semua data", Toast.LENGTH_SHORT).show();
             } else {
 
-                    presenter.editData(jml_siswa, jml_guru, nama_sekolah, Alamat, id, appDatabase);
-                    edit = false;
-                }
-                resetForm();
+                presenter.editData(jml_siswa, jml_guru, nama_sekolah, Alamat, id, appDatabase);
+                edit = false;
             }
+            resetForm();
         }
     }
+}
 

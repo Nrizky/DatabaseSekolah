@@ -3,9 +3,9 @@ package com.example.databasesekolah.ui.main;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Build;
+import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
@@ -14,17 +14,17 @@ import android.widget.Toast;
 import com.example.databasesekolah.Entity.AppDatabase;
 import com.example.databasesekolah.Entity.DataSekolah;
 import com.example.databasesekolah.R;
-import com.example.databasesekolah.ui.main.Presenter;
 import com.example.databasesekolah.ui.main.holder.Adapter;
 
 import java.util.List;
 
 public class Main2Activity extends AppCompatActivity implements MainContact.hapus {
+    View view;
+    RecyclerView recyclerView;
     private AppDatabase appDatabase;
     private Adapter adapter;
     private Presenter presenter;
-    View view;
-    RecyclerView recyclerView;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
